@@ -3,14 +3,8 @@ import { Box, Stack, FormControl, Button } from '@mui/material'
 import { Formik, Form, Field } from 'formik'
 import { TextField } from 'formik-mui'
 import { DeliverySchema } from './Schemas'
-import {OrderData} from '../interfaces/interfaces'
+import {DeliveryFormProps} from '../interfaces/interfaces'
 
-interface DeliveryFormProps {
-  handleNext: () => void;
-  handleBack: () => void;
-  orderData: OrderData;
-  setOrderData: (orderData:OrderData) => void
-}
 
 const DeliveryForm: FC < DeliveryFormProps > = ({ handleNext,handleBack,orderData,setOrderData }) => {
   
@@ -38,8 +32,7 @@ orderData
       handleNext()},500)
       }}>
   
-    { ({submitForm}) =>(
-    
+  
     <Form>
   <Box mt={4}>
     <FormControl sx={ { m: '1.3rem 5rem' }}>
@@ -86,13 +79,11 @@ orderData
       onClick={handleBack}>Back </Button>
       <Button size='large' 
       variant='contained' 
-      type='submit' 
-      onClick={submitForm}>Next</Button>
+      type='submit'>
+      Next</Button>
       </Stack>
       </Form>
-      )}
-        
-        
+    
         </Formik>
   )
 }

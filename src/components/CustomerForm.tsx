@@ -1,36 +1,18 @@
-import React, {
-  FC
-} from 'react'
+import React, { FC } from 'react'
 
-import {
-  Box,
-  Stack,
-  Button,
-  FormControl
-} from '@mui/material'
-import {
-  TextField
-} from "formik-mui";
-import {
-  Formik,
-  Form,
-  Field,
-  useFormik
-} from 'formik'
-import {
-  PersonalSchema
-} from './Schemas'
-import {OrderData} from '../interfaces/interfaces'
+import { Box,Stack,Button, FormControl } from '@mui/material'
+import { TextField } from "formik-mui";
+import { Formik, Form, Field } from 'formik'
+import { PersonalSchema } from './Schemas'
+import {CustomerFormProps} from '../interfaces/interfaces'
 
 
-interface PersonalFormProps {
-  handleNext: () => void;
-  orderData: OrderData;
-  setOrderData: (OrderData:OrderData) => void
-}
 
-const CustomerForm: FC < PersonalFormProps > = ({ handleNext,orderData,setOrderData }) => {
+
+const CustomerForm: FC < CustomerFormProps > = ({ handleNext,orderData,setOrderData }) => {
+
 const {firstName,lastName,email} = orderData
+  
   return (
     <Formik
       initialValues={{
@@ -40,7 +22,7 @@ const {firstName,lastName,email} = orderData
       }}
       validationSchema={PersonalSchema}
 
-      onSubmit={  (values) => {
+      onSubmit= {(values) => {
          setTimeout( ()=>{
          setOrderData({
            ...orderData,
@@ -52,9 +34,7 @@ const {firstName,lastName,email} = orderData
          },500)
       }}
       >
-      {({
-        submitForm, isSubmitting
-      }) => (
+    
         <Form autoComplete="off">
         
   <Box mt={5}>
@@ -66,7 +46,6 @@ const {firstName,lastName,email} = orderData
           id="firstName"
           label="FirstName"
           name='firstName'
-          
           />
         </FormControl>
         
@@ -86,9 +65,7 @@ const {firstName,lastName,email} = orderData
           component={TextField}
           id="email"
           label="Email"
-          name='email'
-          
-          />
+          name='email'/>
         </FormControl>
         </Box> 
         
@@ -96,14 +73,13 @@ const {firstName,lastName,email} = orderData
  
       <Button size='large' 
               variant='contained' 
-              type='submit' 
-              onClick={submitForm}>
+              type='submit' >
               Next
               </Button>
       
       </Stack>
         </Form>
-        )}
+      
         </Formik>
       )
       }

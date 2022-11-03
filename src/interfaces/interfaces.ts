@@ -1,3 +1,16 @@
+export interface CustomerFormProps {
+  handleNext: () => void;
+  orderData: OrderData;
+  setOrderData: (OrderData:OrderData) => void
+}
+
+export interface DeliveryFormProps {
+  handleNext: () => void;
+  handleBack: () => void;
+  orderData: OrderData;
+  setOrderData: (orderData:OrderData) => void
+}
+
 export interface OrderData {
    firstName:string;
    lastName: string;
@@ -7,3 +20,4 @@ export interface OrderData {
    city:string
    postCode:string | number
 }
+
